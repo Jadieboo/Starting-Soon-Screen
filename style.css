@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&family=Varela+Round&display=swap');
+
+ :root {
+    --font-fam: 'Varela Round', sans-serif;
+    --font-weight: 400;
+    --font-size: 20px;
+    --spacing: 6px;
+    
+ }
+ body {
+    margin: 0;
+    padding: 0;
+    background-color: 
+    #1a0938;
+}
+
+/* box is the main box (inner box) */
+.box {
+    width: 1400px;
+    height: 600px;
+    background-color: #1a0938;
+    position: relative;
+    margin: 12% auto 0;
+    border-radius: 50px;
+}
+
+/*
+box::before is for the border color gradient
+box::after is the color gradient for border glow */
+.box::before, .box::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: conic-gradient(
+        #fd004c,
+        #fe9000,
+        #fff020,
+        #3edf4b,
+        #3363ff,
+        #b102b7,
+        #fd004c
+    );
+    background-size: 200%;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 10px;
+    /* give animation a name to bind the keyframes to an element */
+    animation: animate 10s infinite linear;
+    z-index: -1;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 100% 0; 
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* glow */
+.box::after {
+    filter: blur(90px);
+    opacity: 1;
+} 
+
+/********* infinity section *********/
+
+ /* SVG infinity shape */
+svg {
+    position: absolute;
+    top: 200px;
+    left: 550px;
+    margin: 0;
+    padding: 0;
+    transform: scale(5);
+    /* infinity chaser */
+    fill: none;
+    stroke-width: 10;
+    stroke: url(#col);
+    stroke-dasharray: 60 172;
+    stroke-linecap: round;
+    animation: chase 6s linear infinite;
+}
+
+/* animation for chaser */
+@keyframes chase {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 232;
+    }   
+}
+
+/* background svg */
+svg:nth-of-type(1) {
+    animation: none;
+    stroke: #120626;
+    stroke-dasharray: none;
+}
+
+/* text */
+p {
+    color: #ffffff;
+    font-family: var(--font-fam);
+    font-size: var(--font-size);
+    letter-spacing: var(--spacing);
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+/* starting text */
+p.left {
+    position: absolute;
+    top: 271px;
+    left: 452px;
+}
+
+/* soon text */
+p.right {
+    position: absolute;
+    top: 271px;
+    right: 462px;
+}
